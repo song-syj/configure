@@ -88,8 +88,8 @@ set autoindent               " 自动对齐
 set backspace=2              " 设置退格键可用
 set cindent shiftwidth=4     " 自动缩进4空格
 set smartindent              " 智能自动缩进
-set ai!                      " 设置自动缩进
-set nu!                      " 显示行号
+set ai                      " 设置自动缩进
+set nu                      " 显示行号
 set showmatch               " 显示括号配对情况
 set mouse=a                  " 启用鼠标
 set ruler                    " 右下角显示光标位置的状态行
@@ -121,8 +121,8 @@ if has("gui_running")
     set guioptions-=r       " 隐藏右侧滚动条
     set guioptions-=b       " 隐藏底部滚动条
     set showtabline=0       " 隐藏Tab栏
-    colorscheme dracula
-    " colorscheme onedark
+    " colorscheme dracula
+     colorscheme onedark
 endif
 
 set writebackup              " 设置无备份文件
@@ -157,47 +157,6 @@ let $LANG ='en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
-" For Haskell
-:let hs_highlight_delimiters=1            " 高亮定界符
-:let hs_highlight_boolean=1               " 把True和False识别为关键字
-:let hs_highlight_types=1                 " 把基本类型的名字识别为关键字
-:let hs_highlight_more_types=1            " 把更多常用类型识别为关键字
-:let hs_highlight_debug=1                 " 高亮调试函数的名字
-:let hs_allow_hash_operator=1             " 阻止把#高亮为错误
-
-
-" ======= 引号 && 括号自动匹配 ======= "
-
-":inoremap ( ()<ESC>i
-
-":inoremap ) <c-r>=ClosePair(')')<CR>
-
-":inoremap { {}<ESC>i
-
-":inoremap } <c-r>=ClosePair('}')<CR>
-
-":inoremap [ []<ESC>i
-
-":inoremap ] <c-r>=ClosePair(']')<CR>
-
-":inoremap < <><ESC>i
-
-":inoremap > <c-r>=ClosePair('>')<CR>
-
-":inoremap " ""<ESC>i
-
-":inoremap ' ''<ESC>i
-
-":inoremap ` ``<ESC>i
-
-"function ClosePair(char)
-"    if getline('.')[col('.') - 1] == a:char
-"        return "\<Right>"
-"    else
-"        return a:char
-"    endif
-"endf
-
 
 "airline
 let g:airline_powerline_fonts = 1
@@ -209,9 +168,9 @@ set guifont=Menlo\ for\ Powerline:h14
 " 开启tabline
 let g:airline#extensions#tabline#enabled = 1
 " tabline中当前buffer两端的分隔字符
-let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_sep = ' '
 " tabline中未激活buffer两端的分隔字符
-let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#left_alt_sep = '|'
 " tabline中buffer显示编号
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
@@ -224,38 +183,15 @@ endif
 " TxtBrowser          高亮TXT文本文件
 au BufRead,BufNewFile *.txt setlocal ft=txt
 
-" :LoadTemplate       根据文件后缀自动加载模板
-"let g:template_path='D:/Apps/Gvim/vimfiles/template/'
-
-" Ctrl + H            将光标移到当前行的行首
-"imap <c-h> <ESC>I
-
-" Ctrl + J            将光标移到下一行的行首
-"imap <c-j> <ESC>jI
-
-" Ctrl + K            将光标移到上一行的末尾
-"imap <c-k> <ESC>kA
-
-" Ctrl + L            将光标移到当前行的行尾
-"imap <c-l> <ESC>A
-
-" Ctrl + E            一步加载语法模板和作者、时间信息
-"map <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-"imap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-"vmap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
 
 " Ctrl +S                  保存文件并留在插入模式 [插入模式]
 imap <c-s> <ESC>:w<CR>li
 
-" kk                  返回Normal模式 [插入模式]
-" imap kk <ESC>l
 
 " nt                  打开NERDTree [非插入模式]
 map nt :NERDTreeToggle<CR>
 
-" tl                  打开Taglist [非插入模式]
-"map tl :Tlist<CR><c-l>
-" tb
+" tb                  打开Tagbar [非插入模式]
 map tb :TagbarToggle<CR><c-l>
 
 
@@ -303,17 +239,6 @@ func! RunCode()
         endif
 endfunc
 
-" Ctrl + C 一键保存、编译
-"map <c-c> :call CompileCode()<CR>
-"imap <c-c> <ESC>:call CompileCode()<CR>
-"vmap <c-c> <ESC>:call CompileCode()<CR>
-
-" Ctrl + R 一键保存、运行
-"map <c-r> :call RunCode()<CR>
-"imap <c-r> <ESC>:call RunCode()<CR>
-"vmap <c-r> <ESC>:call RunCode()<CR>
-"
-"
 " vim-easy-align config
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
@@ -372,7 +297,12 @@ let g:fzf_colors =
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
+let g:UltiSnipsExpandTrigger="<c-j>"
+
+let g:NERDCustomDelimiters = { 'javascript.jsx': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
+
 set nocompatible              " be iMproved, required
+set showcmd                   " show cmd
 filetype off                  " required
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -385,30 +315,52 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
+" git plug
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'gregsexton/gitv', {'on': ['Gitv']}
+" airline
 Plug 'vim-airline/vim-airline'
-Plug 'majutsushi/tagbar'
-Plug 'godlygeek/tabular'
-Plug 'Chiel92/vim-autoformat'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Shougo/neocomplete.vim'
+Plug 'vim-airline/vim-airline-themes'
+" tree tagbar
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
+Plug 'majutsushi/tagbar'
+Plug 'lvht/tagbar-markdown'
+" snippet
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" front end
+Plug 'mattn/emmet-vim'
+" format comment 
+Plug 'sheerun/vim-polyglot'
+Plug 'Chiel92/vim-autoformat'
+Plug 'junegunn/vim-easy-align'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'junegunn/vim-easy-align'
-Plug 'will133/vim-dirdiff'
-Plug 'w0rp/ale'
-Plug 'rking/ag.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/nerdcommenter'
+" complete
+Plug 'Shougo/neocomplete.vim'
+Plug 'Valloric/YouCompleteMe'
+" fzf
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+" file search
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mileszs/ack.vim'
+Plug 'will133/vim-dirdiff'
+" synax check
+Plug 'w0rp/ale'
+" multiple cursors
 Plug 'terryma/vim-multiple-cursors'
-Plug 'sheerun/vim-polyglot'
-Plug 'chriskempson/base16-vim'
-Plug 'dracula/vim'
-Plug 'joshdick/onedark.vim'
+" vim themes
+Plug 'flazz/vim-colorschemes'
+" javascript
+Plug 'marijnh/tern_for_vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
-" Initialize plugin system
+"" Initialize plugin system
 call plug#end()
+
+cd ~/test
